@@ -14,7 +14,7 @@ namespace BookExchange.Core.Models
         public string Author { get; set; }
         public Guid UserId { get; set; }
         public User? Owner { get; set; }
-   
+        public string Availability { get; set; } = "Available";
         
     }
 }

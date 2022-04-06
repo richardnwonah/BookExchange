@@ -16,6 +16,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IRequestRepository, RequestRepository>(); 
 builder.Services.AddTransient<ITokenService, TokenService>();
 // Add services to the container.
 
