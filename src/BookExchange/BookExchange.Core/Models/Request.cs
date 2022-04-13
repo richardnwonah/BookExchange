@@ -12,15 +12,15 @@ namespace BookExchange.Core.Models
 
         [ForeignKey("Book")]
         public Guid BookId { get; set; } 
-        public Book Book { get; set; } 
+        public Book? Book { get; set; } 
        
         [ForeignKey("User")]
         public Guid RequesterId{ get; set; }
-        public User Requester { get; set; }
+        public User? Requester { get; set; }
 
         [ForeignKey("User")]
         public Guid ApproverId { get; set; }
-        public User Approver { get; set; }
+        public User? Approver { get; set; }
 
         public DateTime CurrentDate { get; set; }
         public DateTime ReturnDate { get; set; }

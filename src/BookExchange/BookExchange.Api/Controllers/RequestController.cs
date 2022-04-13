@@ -21,18 +21,23 @@ namespace BookExchange.Api.Controllers;
         {
             _requestRepository = requestRepository;
         }  
-      
-        [HttpPost]
+      [HttpGet]
+        public async Task<IActionResult> GetRequests(){
+            var requests = await _requestRepository.GetAllRequestAsync();
+            return Ok(requests);
+        }
+
         [HttpPost, Route("MakeRequest")]
-        public async Task<ActionResult<RequestDTO>> PostRequest(RequestDTO request)
+        public async Task<ActionResult<Request>> PostRequest(Request request)
+        {
+            var result =  _requestRepository.PostRequest(request);
+            if((result == null))
             {
-               var result =  _requestRepository.PostRequest(request);
-                if((result == null))
-                {
-                    
-                }
-                 return Ok();
-                 }
+               return BadRequest(ModelState); 
+            }
+
+            return Ok();
+            }
 
         [HttpPut("{id}")]    
         public IActionResult ApproveRequest (Guid id, [FromBody] ApproveRequestDTO approval)

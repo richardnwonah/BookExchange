@@ -26,6 +26,7 @@ namespace BookExchange.Api.Repositories;
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Username = user.Username,
+                    Password = user.Password,
                     Mail = user.Mail,
                     Phone = user.Phone,
                 };

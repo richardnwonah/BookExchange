@@ -8,7 +8,7 @@ namespace BookExchange.Api.Repositories
     { 
         Task<Book> GetBookByIdAsync(Guid Id);
         Task<BookDTO[]> GetAllBooksAsync();
-        Task<bool> PostBook(Book book);
+        Task<bool> PostBook(BookDTO book);
         Task<bool?> PutBook(BookDTO book);
        Task<bool?> DeleteBook(Guid Id);
         //Task<Book> GetBookByCategoryAsync();

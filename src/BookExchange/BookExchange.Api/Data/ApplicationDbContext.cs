@@ -15,7 +15,7 @@ namespace BookExchange.Api.Data
         public DbSet<Book> Books {get; set;}
         public DbSet<Category> Categories {get; set;}
         public DbSet<User> Users {get; set;}
-         public DbSet<Request> Requests {get; set;}
+        public DbSet<Request> Requests {get; set;}
         public DbSet<BorrowedBook> BorrowedBooks {get; set;}
          
     }

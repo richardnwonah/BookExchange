@@ -6,7 +6,8 @@ namespace BookExchange.Api.Repositories
 {
     public interface IRequestRepository
     { 
-    Task<bool?> PostRequest(RequestDTO request);
+    Task<Request[]> GetAllRequestAsync();
+    Task<bool?> PostRequest(Request request);
     Task<bool?> ApproveRequest(Guid id, ApproveRequestDTO approval);
     }
 }

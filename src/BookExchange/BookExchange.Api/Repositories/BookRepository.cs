@@ -44,15 +44,28 @@ namespace BookExchange.Api.Repositories
             return (book);
      }
     
-     public async Task<bool> PostBook(Book book)
+     public async Task<bool> PostBook(BookDTO book)
         {
             var status = false;
              var User = from users in _context.Users
                            where users.UserId == book.CategoryId
                            select users;
-
+           var _book = new Book
+           {
+                    Title = book.Title,
+                    Description = book.Description,
+                    ImgUrl = book.ImgUrl,
+                    ISBN = book.ISBN,
+                    CategoryId = book.CategoryId,
+                    Category = null,
+                    YearOfPublication = book.YearOfPublication,
+                    Author = book.Author,
+                    UserId = book.UserId,  
+                    Owner = null,
+                    Availability = "Available"
+           };
             
-            _context.Books.Add(book);
+            _context.Books.Add(_book);
             await _context.SaveChangesAsync();
 
 

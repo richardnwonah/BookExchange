@@ -39,7 +39,7 @@ namespace BookExchange.Api.Controllers;
         }
 
         [HttpPost]
-        public async Task<ActionResult<Book>> PostBook(Book book)
+        public async Task<ActionResult<Book>> PostBook(BookDTO book)
         {
             
             var result =  _books.PostBook(book);
