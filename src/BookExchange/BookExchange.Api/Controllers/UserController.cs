@@ -20,6 +20,29 @@ namespace BookExchange.Api.Controllers;
         {
             _users = users;
         }
+
+        [HttpGet("{UserId}")]
+        public async Task<ActionResult<User>> GetUserByIdAsync(Guid UserId)
+        {
+            var result = _users.GetUserByIdAsync(UserId);
+            if(result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+        [HttpDelete("{id}")]
+          public async Task<IActionResult> DeleteUser(Guid Id)
+        {
+            var result = _users.DeleteUser(Id);
+                if(result == null)
+                {
+                    return NotFound();
+                }
+            
+            return NoContent();
+        }
+
         [HttpGet]
        // [Authorize]
             public async Task<IActionResult> Get(){
@@ -29,6 +52,6 @@ namespace BookExchange.Api.Controllers;
         
         }
                 
-        }
+    }
 
 

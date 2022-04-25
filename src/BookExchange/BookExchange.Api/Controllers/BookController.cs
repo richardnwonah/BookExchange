@@ -13,7 +13,7 @@ namespace BookExchange.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-//[Authorize]
+    [Authorize]
     public class BookController : ControllerBase
     { 
     private readonly IBookRepository _books;
@@ -21,6 +21,7 @@ namespace BookExchange.Api.Controllers;
         {
             _books = books;
         }  
+        [Authorize]
          [HttpGet("{id}")]
         public async Task<ActionResult<Book>> GetBookByIdAsync(Guid Id)
         {
@@ -32,12 +33,13 @@ namespace BookExchange.Api.Controllers;
             return Ok(result);
         }
         [HttpGet]
-       // [Authorize]
+        [Authorize]
         public async Task<IActionResult> GetBook(){
                 var books = await _books.GetAllBooksAsync();
                 return Ok(books);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Book>> PostBook(BookDTO book)
         {
@@ -50,7 +52,7 @@ namespace BookExchange.Api.Controllers;
             return CreatedAtAction(nameof(GetBook), new { bookid = book.Id }, book);
                 
             }    
-            
+        [Authorize] 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBook(Guid Id)
         {
@@ -62,7 +64,7 @@ namespace BookExchange.Api.Controllers;
             
             return NoContent();
         }
-
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBook(Guid Id, BookDTO book)
         {
