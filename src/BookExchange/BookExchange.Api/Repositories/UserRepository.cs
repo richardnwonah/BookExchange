@@ -1,5 +1,6 @@
 using BookExchange.Core.Models;
 using System.Threading.Tasks;
+using System.Linq;
 using BookExchange.Api.Data;
 using BookExchange.Api.DTOs;
 

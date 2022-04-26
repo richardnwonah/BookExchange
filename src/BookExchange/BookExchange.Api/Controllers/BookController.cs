@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BookExchange.Api.Repositories;
 using BookExchange.Core.Models;
 using BookExchange.Api.DTOs;
+using BookExchange.Api.Services;
+using BookExchange.Api.Helpers;
+
 
 namespace BookExchange.Api.Controllers;
 

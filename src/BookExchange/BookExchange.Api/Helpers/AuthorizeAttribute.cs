@@ -2,7 +2,7 @@ namespace BookExchange.Api.Helpers;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using BookExchange.Api.Entities;
+using BookExchange.Core.Models;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public class AuthorizeAttribute : Attribute, IAuthorizationFilter

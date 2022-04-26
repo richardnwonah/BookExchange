@@ -1,27 +1,42 @@
+﻿namespace BookExchange.Api.Controllers;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using BookExchange.Api.Helpers;
+using BookExchange.Api.Models;
 using BookExchange.Api.Repositories;
+using BookExchange.Api.Services;
 using BookExchange.Core.Models;
-
-namespace BookExchange.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-//[Authorize]
-    public class UserController : ControllerBase
-    { 
+public class UserController : ControllerBase
+{
+    
     private readonly IUserRepository _users;
-        public UserController(IUserRepository users)
-        {
-            _users = users;
-        }
+    private IUserService _userService;
 
-        [HttpGet("{UserId}")]
+    public UserController(IUserService userService, IUserRepository users)
+    {
+        _userService = userService;
+          _users = users;
+    }
+
+    [HttpPost("authenticate")]
+    public IActionResult Authenticate(AuthenticateRequest model)
+    {
+        var response = _userService.Authenticate(model);
+
+        if (response == null)
+            return BadRequest(new { message = "Username or password is incorrect" });
+
+        return Ok(response);
+    }
+
+      [HttpGet("{UserId}")]
         public async Task<ActionResult<User>> GetUserByIdAsync(Guid UserId)
         {
             var result = _users.GetUserByIdAsync(UserId);
@@ -43,15 +58,12 @@ namespace BookExchange.Api.Controllers;
             return NoContent();
         }
 
-        [HttpGet]
-       // [Authorize]
-            public async Task<IActionResult> Get(){
 
-                var users = await _users.GetAllUsersAsync();
-                return Ok(users);
-        
-        }
-                
+    [Authorize]
+    [HttpGet]
+    public IActionResult GetAll()
+    {
+        var users = _userService.GetAll();
+        return Ok(users);
     }
-
-
+}
